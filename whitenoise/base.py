@@ -126,7 +126,6 @@ class WhiteNoise(object):
         self.files[url] = static_file
 
     def find_file(self, url):
-        print("Trying to find file!")
         # Optimization: bail early if the URL can never match a file
         if not self.index_file and url.endswith('/'):
             return
