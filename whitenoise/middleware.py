@@ -32,6 +32,7 @@ class WhiteNoiseMiddleware(WhiteNoise):
     static_prefix = None
 
     def __init__(self, get_response=None, settings=settings):
+        print("### Im initin!")
         self.get_response = get_response
         self.configure_from_settings(settings)
         # Pass None for `application`
@@ -44,12 +45,14 @@ class WhiteNoiseMiddleware(WhiteNoise):
             self.add_files_from_finders()
 
     def __call__(self, request):
+        print("I got called!")
         response = self.process_request(request)
         if response is None:
             response = self.get_response(request)
         return response
 
     def process_request(self, request):
+        print("Im processing!")
         if self.autorefresh:
             static_file = self.find_file(request.path_info)
         else:
