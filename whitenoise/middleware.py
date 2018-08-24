@@ -53,6 +53,9 @@ class WhiteNoiseMiddleware(WhiteNoise):
         if self.autorefresh:
             static_file = self.find_file(request.path_info)
         else:
+            print(request.path_info.startswith(self.static_prefix))
+            print(request.path_info)
+            print(self.static_prefix)
             static_file = self.files.get(request.path_info) if request.path_info.startswith(self.static_prefix) else None
         if static_file is not None:
             return self.serve(static_file, request)
